@@ -1,6 +1,11 @@
 const express = require("express");
 const connectDB = require("./db");
+const cors = require('cors')
+const bodyParser = require("body-parser");
 const User = require("./usersModel");
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors())
 
 function setCommonHeaders(req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -24,7 +29,7 @@ app.listen(PORT, () => {
   console.log(`server running in port ${PORT}`);
 });
 
-app.get("/users", async (req, res) => {
+app.get("/api/users", async (req, res) => {
     try {
       const usuarios = await User.find();
       res.json(usuarios);
