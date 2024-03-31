@@ -3,9 +3,6 @@ const connectDB = require("./db");
 const cors = require('cors')
 const bodyParser = require("body-parser");
 const User = require("./usersModel");
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors())
 
 function setCommonHeaders(req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -21,6 +18,9 @@ function setCommonHeaders(req, res, next) {
 const app = express();
 app.use(express.json());
 app.use(setCommonHeaders);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors())
 
 connectDB();
 
