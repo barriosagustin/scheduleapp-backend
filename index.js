@@ -29,6 +29,10 @@ app.listen(PORT, () => {
   console.log(`server running in port ${PORT}`);
 });
 
+app.get("/", async (req, res) => {
+    res.json("Backend scheduleapp ");
+  });
+
 app.get("/api/users", async (req, res) => {
     try {
       const usuarios = await User.find();
